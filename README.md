@@ -1,4 +1,5 @@
 # sup 2ch
 ```php
-echo
+<?php
+$mysqli = new mysqli("localhost", "user", "password", "db");
 ```

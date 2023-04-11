@@ -1,0 +1,90 @@
+@import 'font';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'SkyPro';
+    font-size: 16px;
+}
+
+button, input {
+    border: 0;
+    outline: none;
+}
+
+
+
+:root   {
+    --blue: #004980;
+    --blue-light: #C2F5FF;
+    --green-happy: #7AC100;
+    --green-happy-hover: #629b00;
+}
+
+
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.complexity {
+    width: 480px;
+    height: 459px;
+    background-color: var(--blue-light);
+    border-radius: .75rem;
+    padding: 52px 69px 48px 69px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-title {
+        font-size: 2.5rem;
+        color: var(--blue);
+        text-align: center;
+    }
+    &-levels {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 48px;
+        margin-bottom: 67px;
+        gap: 1.5rem;
+        &__item {
+            position: relative;
+            width: 98px;
+            height: 98px;
+            background: #FFFFFF;
+            border-radius: .75rem;
+            cursor: pointer;
+            color: #0080C1;
+            font-size: 4rem;
+            transition: .1s linear transform;
+            &:hover {
+                transform: scale(1.05);
+            }
+            &:active {
+                transform: scale(.95);
+            }
+        }
+    }
+    &-btn {
+        cursor: pointer;
+        width: 246px;
+        height: 50px;
+        background: var(--green-happy);
+        color: #FFFFFF;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        border-radius: .75rem;
+        transition: .1s linear background;
+        &:hover {
+            background-color: var(--green-happy-hover);
+        }
+    }
+}
+

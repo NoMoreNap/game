@@ -1,1 +1,1 @@
-const a = () => {}
+$app.renderScreen('main-screen');
