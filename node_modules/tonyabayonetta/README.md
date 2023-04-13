@@ -153,4 +153,60 @@ function sample() {
         }
     }
 }
+``` 
+### How to use my  HTML to Object engine
+```html
+    <section class="test test2" data-set="test" scr="vk.com/tonybayonetta">
+        <div class="clock2" data-set="tester">
+            <button class="clock">This Button</button>
+        </div>
+        <div>This Div</div>
+    </section>
+```
+```js
+import toObject from "../node_modules/tonyabayonetta/lib/scripts/toObjectEngine.js";
+
+const section = toObject(document.querySelector('.test'))
+```
+#### the script will return an object of the following structure:
+```js
+// tag - this tag name
+// cls - classes of this element
+// attr - attributes of this element ( key - value)
+// content - inner content of this element
+{
+  "attr": {
+    "data-set": "test",
+    "scr": "vk.com/tonybayonetta"
+  },
+  "cls": [
+    "test",
+    "test2"
+  ],
+  "tag": "section",
+  "content": [
+    {
+      "attr": {
+        "data-set": "tester"
+      },
+      "cls": [
+        "clock2"
+      ],
+      "tag": "div",
+      "content": [
+        {
+          "cls": [
+            "clock"
+          ],
+          "tag": "button",
+          "content": "This Button"
+        }
+      ]
+    },
+    {
+      "tag": "div",
+      "content": "This Div"
+    }
+  ]
+}
 ```

@@ -3,7 +3,26 @@ import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateE
 export default class MainScreen {
     constructor (element) {
         element.append(templateEngine(MainScreen.TEMPLATE()))
+
+        $('.complexity-levels').click(this.clickOnLevel);
+        $('.complexity-btn').click(this.startClick)
+
     }
+
+    clickOnLevel(e) {
+        const target = e.target
+        $('.complexity-levels__item').removeClass('active');
+        target.classList.add('active');
+        localStorage.setItem('complexity', target.dataset.level);
+    }
+
+    startClick() {
+        if (!$('.complexity-levels__item').hasClass('active')) {
+            return $app.alert('Выберите уровень сложности!',1000)
+        }
+        $app.renderScreen('game')
+    }
+
 }
 
 MainScreen.TEMPLATE = () => {
