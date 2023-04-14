@@ -2,7 +2,7 @@ import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateE
 
 export default class Game  {
     constructor(element) {
-        element.append(templateEngine(Game.TEMPLATE()))
+        element.appendChild(templateEngine(Game.TEMPLATE()))
         localStorage.setItem('inGame', true)
     }
 }

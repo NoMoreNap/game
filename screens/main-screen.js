@@ -2,27 +2,44 @@ import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateE
 
 export default class MainScreen {
     constructor (element) {
-        element.append(templateEngine(MainScreen.TEMPLATE()))
+        this.element = element
+        this.element.appendChild(templateEngine(MainScreen.TEMPLATE()))
 
-        $('.complexity-levels').click(this.clickOnLevel);
-        $('.complexity-btn').click(this.startClick)
+        document.querySelector('.complexity-levels').addEventListener('click',this.clickOnLevel);
+        document.querySelector('.complexity-btn').addEventListener('click',this.startClick);
+
+        this.startClick = this.startClick.bind(this)
+        this.clickOnLevel = this.clickOnLevel.bind(this)
+
+
+
 
     }
 
     clickOnLevel(e) {
-        const target = e.target
-        $('.complexity-levels__item').removeClass('active');
+        const target = e.target;
+        const levels = document.querySelectorAll('.complexity-levels__item');
+
+        levels.forEach(level => {
+            level.classList.remove('active')
+        })
         target.classList.add('active');
         localStorage.setItem('complexity', target.dataset.level);
     }
 
     startClick() {
-        if (!$('.complexity-levels__item').hasClass('active')) {
+        const levels = document.querySelectorAll('.complexity-levels__item');
+        let isActive = false
+        levels.forEach(level => {
+            if (level.classList.contains('active')) {
+                isActive = true
+            }
+        })
+        if (!isActive) {
             return $app.alert('Выберите уровень сложности!',1000)
         }
-        $app.renderScreen('game')
+        $app.renderScreen('game');
     }
-
 }
 
 MainScreen.TEMPLATE = () => {
