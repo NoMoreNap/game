@@ -18,6 +18,6 @@
   "homepage": "https://github.com/NoMoreNap/game#readme",
   "dependencies": {
     "jquery": "^3.6.4",
-    "tonyabayonetta": "^1.1.10"
+    "tonyabayonetta": "^1.1.13"
   }
 }

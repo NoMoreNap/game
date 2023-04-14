@@ -1,4 +1,5 @@
 @import 'font';
+@import url('../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css');
 
 * {
     padding: 0;
@@ -63,12 +64,16 @@ button, input {
             cursor: pointer;
             color: #0080C1;
             font-size: 4rem;
-            transition: .1s linear transform;
+            transition: .1s linear transform, .1s linear background;
             &:hover {
                 transform: scale(1.05);
             }
             &:active {
                 transform: scale(.95);
+            }
+            &.active {
+                background-color: #0080C1;
+                color: #FFFFFF;
             }
         }
     }

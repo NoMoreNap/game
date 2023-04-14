@@ -1,3 +1,4 @@
+@import url("../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css");
 @font-face {
   font-family: "SkyPro";
   font-weight: 400;
@@ -64,13 +65,17 @@ button, input {
   cursor: pointer;
   color: #0080C1;
   font-size: 4rem;
-  transition: 0.1s linear transform;
+  transition: 0.1s linear transform, 0.1s linear background;
 }
 .complexity-levels__item:hover {
   transform: scale(1.05);
 }
 .complexity-levels__item:active {
   transform: scale(0.95);
+}
+.complexity-levels__item.active {
+  background-color: #0080C1;
+  color: #FFFFFF;
 }
 .complexity-btn {
   cursor: pointer;
