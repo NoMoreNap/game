@@ -1,11 +1,11 @@
 @import 'font';
-@import url('../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css');
+@import '../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css';
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'SkyPro';
+    font-family: SkyPro;
     font-size: 16px;
 }
 
@@ -36,7 +36,7 @@ input {
     height: 459px;
     background-color: var(--blue-light);
     border-radius: 0.75rem;
-    padding: 52px 69px 48px 69px;
+    padding: 52px 69px 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +56,7 @@ input {
             position: relative;
             width: 98px;
             height: 98px;
-            background: #ffffff;
+            background: #fff;
             border-radius: 0.75rem;
             cursor: pointer;
             color: #0080c1;
@@ -70,7 +70,7 @@ input {
             }
             &.active {
                 background-color: #0080c1;
-                color: #ffffff;
+                color: #fff;
             }
         }
     }
@@ -79,7 +79,7 @@ input {
         width: 246px;
         height: 50px;
         background: var(--green-happy);
-        color: #ffffff;
+        color: #fff;
         font-size: 1.5rem;
         line-height: 2rem;
         border-radius: 0.75rem;
