@@ -1,23 +1,29 @@
 {
-  "name": "4",
-  "version": "1.0.0",
-  "description": "```php\r <?php\r $mysqli = new mysqli(\"localhost\", \"user\", \"password\", \"db\");\r ```",
-  "main": "main.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NoMoreNap/game.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/NoMoreNap/game/issues"
-  },
-  "homepage": "https://github.com/NoMoreNap/game#readme",
-  "dependencies": {
-    "jquery": "^3.6.4",
-    "tonyabayonetta": "^1.1.13"
-  }
+    "name": "4",
+    "version": "1.0.0",
+    "description": "```php\r <?php\r $mysqli = new mysqli(\"localhost\", \"user\", \"password\", \"db\");\r ```",
+    "main": "main.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "format": "prettier --write ."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/NoMoreNap/game.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/NoMoreNap/game/issues"
+    },
+    "homepage": "https://github.com/NoMoreNap/game#readme",
+    "dependencies": {
+        "tonyabayonetta": "^1.1.13"
+    },
+    "devDependencies": {
+        "eslint": "^8.38.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "prettier": "^2.8.7"
+    }
 }

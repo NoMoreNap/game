@@ -9,21 +9,18 @@
     font-size: 16px;
 }
 
-button, input {
+button,
+input {
     border: 0;
     outline: none;
 }
 
-
-
-:root   {
+:root {
     --blue: #004980;
-    --blue-light: #C2F5FF;
-    --green-happy: #7AC100;
+    --blue-light: #c2f5ff;
+    --green-happy: #7ac100;
     --green-happy-hover: #629b00;
 }
-
-
 
 .app {
     width: 100vw;
@@ -38,7 +35,7 @@ button, input {
     width: 480px;
     height: 459px;
     background-color: var(--blue-light);
-    border-radius: .75rem;
+    border-radius: 0.75rem;
     padding: 52px 69px 48px 69px;
     display: flex;
     flex-direction: column;
@@ -59,21 +56,21 @@ button, input {
             position: relative;
             width: 98px;
             height: 98px;
-            background: #FFFFFF;
-            border-radius: .75rem;
+            background: #ffffff;
+            border-radius: 0.75rem;
             cursor: pointer;
-            color: #0080C1;
+            color: #0080c1;
             font-size: 4rem;
-            transition: .1s linear transform, .1s linear background;
+            transition: 0.1s linear transform, 0.1s linear background;
             &:hover {
                 transform: scale(1.05);
             }
             &:active {
-                transform: scale(.95);
+                transform: scale(0.95);
             }
             &.active {
-                background-color: #0080C1;
-                color: #FFFFFF;
+                background-color: #0080c1;
+                color: #ffffff;
             }
         }
     }
@@ -82,14 +79,13 @@ button, input {
         width: 246px;
         height: 50px;
         background: var(--green-happy);
-        color: #FFFFFF;
+        color: #ffffff;
         font-size: 1.5rem;
         line-height: 2rem;
-        border-radius: .75rem;
-        transition: .1s linear background;
+        border-radius: 0.75rem;
+        transition: 0.1s linear background;
         &:hover {
             background-color: var(--green-happy-hover);
         }
     }
 }
-
