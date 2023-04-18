@@ -1,11 +1,11 @@
 @import 'font';
-@import url('../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css');
+@import '../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css';
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'SkyPro';
+    font-family: SkyPro;
     font-size: 16px;
 }
 
@@ -36,7 +36,7 @@ input {
     height: 459px;
     background-color: var(--blue-light);
     border-radius: 0.75rem;
-    padding: 52px 69px 48px 69px;
+    padding: 52px 69px 48px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -56,7 +56,7 @@ input {
             position: relative;
             width: 98px;
             height: 98px;
-            background: #ffffff;
+            background: #fff;
             border-radius: 0.75rem;
             cursor: pointer;
             color: #0080c1;
@@ -70,7 +70,7 @@ input {
             }
             &.active {
                 background-color: #0080c1;
-                color: #ffffff;
+                color: #fff;
             }
         }
     }
@@ -79,7 +79,7 @@ input {
         width: 246px;
         height: 50px;
         background: var(--green-happy);
-        color: #ffffff;
+        color: #fff;
         font-size: 1.5rem;
         line-height: 2rem;
         border-radius: 0.75rem;
@@ -88,4 +88,105 @@ input {
             background-color: var(--green-happy-hover);
         }
     }
+}
+
+.game {
+    width: 100vw;
+    height: 100vh;
+    padding: 22px 22px 23px 49px;
+    &-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &-timer {
+        max-width: 155px;
+        &_nav {
+            display: flex;
+        }
+        &_min,
+        &_sec {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            & span {
+                font-weight: 400;
+                font-size: 1rem;
+                color: #fff;
+            }
+            & span:first-child {
+                padding-right: 5px;
+            }
+        }
+        #min,
+        #sec {
+            font-weight: 400;
+            font-size: 4rem;
+        }
+    }
+    &-btn {
+        background: var(--green-happy);
+        border-radius: 12px;
+        cursor: pointer;
+        width: 246px;
+        height: 50px;
+        color: #fff;
+        font-weight: 400;
+        font-size: 1.5rem;
+        transition: 0.1s linear background;
+        &:hover {
+            background: var(--green-happy-hover);
+        }
+    }
+    &-wrapper {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: calc(100% - 100px); // Костыль!
+    }
+    &-field {
+        width: fit-content;
+        height: fit-content;
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 15px;
+        column-gap: 15px;
+    }
+    &-card {
+        position: relative;
+        flex: 1;
+        flex-basis: 72.75px;
+        top: 0;
+        left: 0;
+        width: 95px;
+        height: 133px;
+        border-radius: 10px;
+        transform-style: preserve-3d;
+        transition: 0.5s ease-in-out;
+        cursor: pointer;
+        &_s,
+        &_f {
+            position: absolute;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            transition: 0.5s ease-in-out;
+        }
+        &_f {
+            transform: rotateY(0.5turn);
+        }
+    }
+}
+
+// any
+
+.flip-scale-up-hor {
+    transform: rotateY(0.5turn);
+}
+.flip-scale-down-hor {
+    transform: rotateY(0.5turn);
 }
