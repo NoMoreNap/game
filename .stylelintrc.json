@@ -8,6 +8,7 @@
     "rules": {
         "scss/at-if-no-null": null,
         "font-family-no-missing-generic-family-keyword": null,
-        "rule-empty-line-before": null
+        "rule-empty-line-before": null,
+        "selector-class-pattern": "^[a-z]([-]?[a-z0-9]+)*(__[a-z0-9]([-]?[a-z0-9]+)*)?(--[a-z0-9]([-]?[a-z0-9]+)*)?"
     }
 }

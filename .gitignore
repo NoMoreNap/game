@@ -1,5 +1,5 @@
 node_modules/
-# .eslintrc.json
-# .prettierrc.yaml
-# .prettierignore
-# .gitignore
+.eslintrc.json
+.prettierrc.yaml
+.prettierignore
+.gitignore
