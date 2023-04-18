@@ -10,8 +10,14 @@
     </head>
     <body>
         <main class="app"></main>
+
         <script src="scripts/manifest.js"></script>
         <script type="module" src="scripts/app.js"></script>
         <script type="module" src="main.js"></script>
+        <script type="module">
+            import toObject from './node_modules/tonyabayonetta/lib/scripts/toObjectEngine.js';
+
+            //console.log(toObject(document.querySelector('.game')));
+        </script>
     </body>
 </html>
