@@ -1,4 +1,4 @@
-import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine.js';
+import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
 export default class Game {
     constructor(element) {
@@ -7,6 +7,7 @@ export default class Game {
         this.element = document.querySelector('.game');
 
         localStorage.setItem('inGame', true);
+        const $app = window.application;
 
         this.header = document.querySelector('.game-header');
         $app.renderBlock(this.header, 'timer');

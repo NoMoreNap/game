@@ -148,15 +148,14 @@ input {
     &-field {
         width: fit-content;
         height: fit-content;
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
         row-gap: 15px;
         column-gap: 15px;
     }
     &-card {
         position: relative;
-        flex: 1;
-        flex-basis: 72.75px;
+        grid-column: span 1;
         top: 0;
         left: 0;
         width: 95px;
@@ -187,6 +186,7 @@ input {
 .flip-scale-up-hor {
     transform: rotateY(0.5turn);
 }
+
 .flip-scale-down-hor {
     transform: rotateY(0.5turn);
 }
