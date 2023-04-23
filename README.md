@@ -3,5 +3,5 @@
 ```php
 <?php
 $mysqli = new mysqli("localhost", "user", "password", "db");
-echo 'sup 2ch';
+echo 'sup 2ch'
 ```
