@@ -1,4 +1,4 @@
-import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine.js';
+import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
 export default class MainScreen {
     constructor(element) {
@@ -11,7 +11,7 @@ export default class MainScreen {
         document
             .querySelector('.complexity-btn')
             .addEventListener('click', this.startClick);
-
+        this.app = window.application;
         this.startClick = this.startClick.bind(this);
         this.clickOnLevel = this.clickOnLevel.bind(this);
     }
@@ -36,9 +36,12 @@ export default class MainScreen {
             }
         });
         if (!isActive) {
-            return $app.alert('Выберите уровень сложности!', 1000);
+            return window.application.alert(
+                'Выберите уровень сложности!',
+                1000
+            );
         }
-        $app.renderScreen('game');
+        window.application.renderScreen('game');
     }
 }
 
