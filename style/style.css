@@ -1,5 +1,5 @@
 @import '../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css';
-
+@import '../node_modules/tonyabayonetta/lib/templates/puff-in-center.css';
 @font-face {
   font-family: SkyPro;
   font-weight: 400;
@@ -184,6 +184,41 @@ input {
 }
 .game-card_f {
   transform: rotateY(0.5turn);
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: rgba(0, 73, 128, 0.9098039216);
+}
+
+.result {
+  width: 480px;
+  height: 459px;
+  background-color: var(--blue-light);
+  border-radius: 12px;
+  padding: 30.26px 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.result-title {
+  color: var(--blue);
+  font-size: 2.5rem;
+  margin: 4.74px 0 28px;
+}
+.result-title_sub {
+  color: #000;
+  font-size: 1.5rem;
+}
+.result-time {
+  color: #000000;
+  font-size: 4rem;
+  margin: 10px 0 40px;
 }
 
 .flip-scale-up-hor {
