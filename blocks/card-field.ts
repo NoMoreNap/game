@@ -39,7 +39,6 @@ export default class CardField {
 
         this.onFieldClick = this.onFieldClick.bind(this);
         this.showAll = this.showAll.bind(this);
-        this.checkEndGame = this.checkEndGame.bind(this);
 
         if (!localStorage.getItem('inCurrentGame')) {
             this.showAll();
@@ -124,6 +123,7 @@ export default class CardField {
 
     checkWin(pair: Array<string>, currentDivPair: Array<Element>) {
         if (Number(this.field.children.length) - 2 === document.querySelectorAll('.pair').length) {
+            window.application.stopTimer();
             return window.application.renderBlock(document.querySelector('.app'), 'win');
         }
         let win = false;
@@ -145,26 +145,11 @@ export default class CardField {
             window.application.renderBlock(document.querySelector('.app'), 'lose');
             localStorage.clear();
         }
-        this.checkEndGame();
-        localStorage.setItem('openCard', '')
+        localStorage.setItem('openCard', '');
         this.turns = 0;
         localStorage.setItem('turns', '0');
         this.currentDivPair = [];
         this.currentPair = [];
-
-    }
-
-    checkEndGame() {
-        const childArr: any = this.field.children;
-        let win = true;
-        for (const el of childArr) {
-            if (!el.classList.contains('pair')) {
-                win = false;
-            }
-        }
-        if (win) {
-            window.application.renderBlock(document.querySelector('.app'), 'win');
-        }
     }
 }
 
