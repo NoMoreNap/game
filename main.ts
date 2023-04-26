@@ -5,22 +5,31 @@ import Game from './screens/game';
 import Timer from './blocks/timer';
 import AgainBtn from './blocks/again-btn';
 import CardField from './blocks/card-field';
-import toObject from './node_modules/tonyabayonetta/lib/scripts/toObjectEngine';
+import Result from './blocks/end-game';
 
-const app = document.querySelector('.app');
+const app = document.querySelector('.app')!;
 
 window.application = {
     blocks: {},
     screens: {},
-    renderScreen: function (screen) {
+    renderScreen: function (screen: string) {
+        this.timers.forEach((el: any) => {
+            clearInterval(el)
+        });
         if (app.childNodes.length) {
-            app.removeChild(app.firstChild);
+            app.removeChild(app.firstChild!);
         }
         this.screens[screen]();
     },
-    renderBlock: function (parent, block) {
+    renderBlock: function (parent: HTMLElement, block: string) {
         this.blocks[block](parent);
     },
+    timers: [],
+    stopTimer: () => {
+        window.application.timers.forEach((el:any) => {
+            clearInterval(el)
+        }) 
+    }
 };
 
 // screens
@@ -31,14 +40,20 @@ function renderGameScreen() {
     const render = new Game(app);
 }
 // blocks
-function renderTimer(parent) {
+function renderTimer(parent: HTMLElement) {
     const render = new Timer(parent);
 }
-function renderAgainBtn(parent) {
+function renderAgainBtn(parent: HTMLElement) {
     const render = new AgainBtn(parent);
 }
-function renderCardField(parent) {
+function renderCardField(parent: HTMLElement) {
     const render = new CardField(parent);
+}
+function renderLoseScreen(parent: Element) {
+    const render = new Result(parent,'lose');
+}
+function renderWinScreen(parent: Element) {
+    const render = new Result(parent,'win');
 }
 
 // to push
@@ -48,9 +63,13 @@ $app.screens['game'] = renderGameScreen;
 $app.blocks['timer'] = renderTimer;
 $app.blocks['btn'] = renderAgainBtn;
 $app.blocks['card-field'] = renderCardField;
+$app.blocks['lose'] = renderLoseScreen;
+$app.blocks['win'] = renderWinScreen;
+
+
 
 // any customs
-$app.alert = function (text, time) {
+$app.alert = function (text: string, time: number) {
     const newAlert = new CustomAlert(app, text);
     newAlert.toRemove(time);
 };

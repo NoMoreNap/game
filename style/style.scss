@@ -1,5 +1,7 @@
 @import 'font';
 @import '../node_modules/tonyabayonetta/lib/templates/custom_alert/custom_alert.css';
+@import '../node_modules/tonyabayonetta/lib/templates/puff-in-center.css';
+
 
 * {
     padding: 0;
@@ -178,6 +180,42 @@ input {
         &_f {
             transform: rotateY(0.5turn);
         }
+    }
+}
+.wrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    background-color: #004980e8;
+    
+}
+.result {
+    width: 480px;
+    height: 459px;
+    background-color: var(--blue-light);
+    border-radius: 12px;
+    padding: 30.26px 0 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-title {
+        color: var(--blue);
+        font-size: 2.5rem;
+        margin: 4.74px 0 28px;
+        &_sub{
+            color: #000;
+            font-size: 1.5rem;
+            
+        }
+
+    }
+    &-time{
+        color: #000000;
+        font-size: 4rem;
+        margin: 10px 0 40px;
     }
 }
 

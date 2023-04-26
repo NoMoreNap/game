@@ -1,15 +1,18 @@
 import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
 export default class Game {
-    constructor(element) {
+    element: HTMLElement;
+    header: HTMLElement;
+    static TEMPLATE: () => object;
+    constructor(element: Element) {
         element.appendChild(templateEngine(Game.TEMPLATE()));
 
-        this.element = document.querySelector('.game');
+        this.element = document.querySelector('.game')!;
 
-        localStorage.setItem('inGame', true);
+        localStorage.setItem('inGame', 'true');
         const $app = window.application;
 
-        this.header = document.querySelector('.game-header');
+        this.header = document.querySelector('.game-header')!;
         $app.renderBlock(this.header, 'timer');
         $app.renderBlock(this.header, 'btn');
         $app.renderBlock(this.element, 'card-field');

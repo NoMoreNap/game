@@ -1,29 +1,77 @@
 import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
 export default class CardField {
-    constructor(element) {
+    element: Element;
+    field: Element;
+    level: number;
+    cards: Array<object>;
+    turns: number;
+    currentPair: Array<string>;
+    currentDivPair: Array<Element>;
+    localPairs: Array<Number>;
+    static TEMPLATE_FIELD: () => object;
+    static CARDS_ARR: object;
+    static TEMPLATE_CARD: () => object;
+    static RANDOMIZER: (obj: object, count: number) => Array<object>;
+    static MIXER: (obj: Array<object>) => Array<object>;
+
+    constructor(element: Element) {
         this.element = element;
         this.element.appendChild(templateEngine(CardField.TEMPLATE_FIELD()));
-        this.field = document.querySelector('.game-field');
+        this.field = document.querySelector('.game-field')!;
 
-        this.level = localStorage.getItem('complexity') * 6;
+        this.level = Number(localStorage.getItem('complexity')) * 6;
         this.cards = CardField.RANDOMIZER(CardField.CARDS_ARR, this.level);
         this.turns = 0;
         this.currentPair = [];
         this.currentDivPair = [];
+
+        if (!localStorage.getItem('localPairs')) {
+            this.localPairs = [];
+        } else {
+            this.localPairs = JSON.parse(localStorage.getItem('localPairs')!);
+        }
+
         while (this.level) {
             this.field.appendChild(templateEngine(CardField.TEMPLATE_CARD()));
             this.level--;
         }
 
-        this.showAll();
         this.onFieldClick = this.onFieldClick.bind(this);
         this.showAll = this.showAll.bind(this);
-        this.checkEndGame = this.checkEndGame.bind(this);
+
+        if (!localStorage.getItem('inCurrentGame')) {
+            this.showAll();
+        } else {
+            this.field.addEventListener('click', this.onFieldClick);
+            this.turns = JSON.parse(localStorage.getItem('turns')!);
+            this.cards = JSON.parse(localStorage.getItem('cards')!);
+        }
+
+        this.localPairs.forEach((el: any) => {
+            const currentCard = document.querySelectorAll('.game-card')[el];
+            const value = Object.values(this.cards[el])[0];
+            this.toFace(currentCard, value);
+            currentCard.classList.add('flip-scale-up-hor', 'pair');
+        });
+        if (localStorage.getItem('openCard')) {
+            const index = Number(localStorage.getItem('openCard'));
+            const card = document.querySelectorAll('.game-card')[index];
+            const value = Object.values(this.cards[index])[0];
+            const cardName = Object.keys(this.cards[index])[0];
+            this.currentDivPair.push(card);
+            this.currentPair.push(cardName);
+
+            this.toFace(card, value);
+            card.classList.add('flip-scale-up-hor');
+        }
     }
 
     showAll() {
         this.cards = CardField.MIXER(this.cards);
+        localStorage.setItem('inCurrentGame', 'true');
+        localStorage.setItem('turns', JSON.stringify(this.turns));
+        localStorage.setItem('cards', JSON.stringify(this.cards));
         for (let i = 0; i < this.cards.length; i++) {
             const value = Object.values(this.cards[i])[0];
             this.field.children[i].classList.add('flip-scale-up-hor');
@@ -31,89 +79,77 @@ export default class CardField {
         }
         setTimeout(() => {
             for (let i = 0; i < this.cards.length; i++) {
-                this.field.children[i].classList.remove('flip-scale-up-hor');
-                this.field.children[i].lastElementChild.remove();
+                this.field.children[i].classList!.remove('flip-scale-up-hor');
+                this.field.children[i].lastElementChild!.remove();
             }
             this.field.addEventListener('click', this.onFieldClick);
         }, 5000);
     }
 
-    onFieldClick(e) {
+    onFieldClick(e: any) {
         const target = e.target;
         const childArr = this.field.children;
         this.turns++;
+        localStorage.setItem('turns', String(this.turns));
         if (target.classList.contains('pair')) {
             return window.application.alert('Вы уже выбирали эту карту', 500);
         }
         if (target.classList.contains('game-card')) {
+            target.classList.add('open');
             for (let i = 0; i < childArr.length; i++) {
                 const shirt = childArr[i];
                 const cardName = Object.keys(this.cards[i])[0];
-                const face = this.cards[i][cardName];
+                const face = this.cards[i][cardName as keyof object];
                 if (target === shirt) {
+                    localStorage.setItem('openCard', String(i));
                     this.currentDivPair.push(target);
                     this.currentPair.push(cardName);
                     this.toFace(shirt, face);
                     target.classList.add('flip-scale-up-hor');
                     if (this.turns === 2) {
-                        return this.checkWin(
-                            this.currentPair,
-                            this.currentDivPair
-                        );
+                        return this.checkWin(this.currentPair, this.currentDivPair);
                     }
                 }
             }
         }
     }
 
-    toFace(target, src) {
+    toFace(target: Element, src: string) {
         const card = document.createElement('img');
         card.classList.add('game-card_f');
         card.setAttribute('src', src);
         target.appendChild(card);
     }
 
-    checkWin(pair, currentDivPair) {
+    checkWin(pair: Array<string>, currentDivPair: Array<Element>) {
+        if (Number(this.field.children.length) - 2 === document.querySelectorAll('.pair').length) {
+            window.application.stopTimer();
+            return window.application.renderBlock(document.querySelector('.app'), 'win');
+        }
         let win = false;
         pair[0] === pair[1] ? (win = true) : (win = false);
         if (win) {
             currentDivPair.forEach((el) => {
+                for (let i = 0; i < this.field.children.length; i++) {
+                    const element = this.field.children[i];
+                    if (el === element) {
+                        this.localPairs.push(i);
+                    }
+                }
                 el.classList.add('pair');
             });
             window.application.alert('Вы собрали пару!', 1000);
+            localStorage.setItem('localPairs', JSON.stringify(this.localPairs));
         } else {
-            currentDivPair.forEach((el) => {
-                setTimeout(() => {
-                    el.classList.remove('flip-scale-up-hor');
-                    el.lastElementChild.remove();
-                }, 600);
-            });
-            window.application.alert('Не правильно!', 1000);
+            window.application.stopTimer();
+            window.application.renderBlock(document.querySelector('.app'), 'lose');
+            localStorage.clear();
         }
-        this.checkEndGame();
+        localStorage.setItem('openCard', '');
         this.turns = 0;
+        localStorage.setItem('turns', '0');
         this.currentDivPair = [];
         this.currentPair = [];
-    }
-
-    checkEndGame() {
-        const childArr = this.field.children;
-        let win = true;
-        for (const el of childArr) {
-            if (!el.classList.contains('pair')) {
-                win = false;
-            }
-        }
-        if (win) {
-            setTimeout(() => {
-                window.application.alert('Ура вы победили!', 3000);
-            }, 1000);
-            setTimeout(() => {
-                localStorage.removeItem('inGame');
-                localStorage.removeItem('сomplexity');
-                location.reload();
-            }, 3600);
-        }
     }
 }
 
@@ -207,10 +243,10 @@ CardField.CARDS_ARR = {
 };
 
 CardField.RANDOMIZER = (obj, c) => {
-    const mixed = [];
+    const mixed: object[] = [];
     const randKeys = [];
     const keys = Object.keys(obj);
-    let randValues = [];
+    let randValues: string[] = [];
     let pairs = c / 2;
     while (pairs) {
         const name = keys[(keys.length * Math.random()) << 0];
@@ -221,7 +257,7 @@ CardField.RANDOMIZER = (obj, c) => {
         continue;
     }
     randKeys.forEach((card) => {
-        const keysV = Object.keys(obj[card]);
+        const keysV = Object.keys(obj[card as keyof object]);
         let i = 2;
         while (i) {
             const name = keysV[(keysV.length * Math.random()) << 0];
@@ -233,7 +269,7 @@ CardField.RANDOMIZER = (obj, c) => {
         }
         randValues.forEach((val) => {
             mixed.push({
-                [card]: obj[card][val],
+                [card]: obj[card as keyof object][val],
             });
         });
         randValues = [];

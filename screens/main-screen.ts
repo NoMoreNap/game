@@ -1,30 +1,33 @@
 import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
 export default class MainScreen {
-    constructor(element) {
+    element: Element;
+    app: Element;
+    static TEMPLATE: () => object;
+    constructor(element: Element) {
         this.element = element;
         this.element.appendChild(templateEngine(MainScreen.TEMPLATE()));
 
         document
-            .querySelector('.complexity-levels')
+            .querySelector('.complexity-levels')!
             .addEventListener('click', this.clickOnLevel);
         document
-            .querySelector('.complexity-btn')
+            .querySelector('.complexity-btn')!
             .addEventListener('click', this.startClick);
         this.app = window.application;
         this.startClick = this.startClick.bind(this);
         this.clickOnLevel = this.clickOnLevel.bind(this);
     }
 
-    clickOnLevel(e) {
-        const target = e.target;
+    clickOnLevel(e: any) {
+        const target = e.target!;
         const levels = document.querySelectorAll('.complexity-levels__item');
 
         levels.forEach((level) => {
             level.classList.remove('active');
         });
         target.classList.add('active');
-        localStorage.setItem('complexity', target.dataset.level);
+        localStorage.setItem('complexity', target.dataset.level!);
     }
 
     startClick() {
