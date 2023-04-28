@@ -1,6 +1,6 @@
 import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
-export default class CardField {
+class CardField {
     element: Element;
     field: Element;
     level: number;
@@ -284,3 +284,5 @@ CardField.MIXER = (obj) => {
     }
     return obj;
 };
+
+module.exports = { CardField }
