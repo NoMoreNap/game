@@ -1,6 +1,6 @@
 import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateEngine';
 
-class CardField {
+export default class CardField {
     element: Element;
     field: Element;
     level: number;
@@ -124,7 +124,7 @@ class CardField {
     checkWin(pair: Array<string>, currentDivPair: Array<Element>) {
         if (Number(this.field.children.length) - 2 === document.querySelectorAll('.pair').length) {
             window.application.stopTimer();
-            return window.application.renderBlock(document.querySelector('.app'), 'win');
+            return window.application.renderBlock(document.querySelector('.app')!, 'win');
         }
         let win = false;
         pair[0] === pair[1] ? (win = true) : (win = false);
@@ -142,7 +142,7 @@ class CardField {
             localStorage.setItem('localPairs', JSON.stringify(this.localPairs));
         } else {
             window.application.stopTimer();
-            window.application.renderBlock(document.querySelector('.app'), 'lose');
+            window.application.renderBlock(document.querySelector('.app')!, 'lose');
             localStorage.clear();
         }
         localStorage.setItem('openCard', '');

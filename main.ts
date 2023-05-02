@@ -29,7 +29,12 @@ window.application = {
         window.application.timers.forEach((el:any) => {
             clearInterval(el)
         }) 
+    },
+    alert: function (text: string, time: number) {
+        const newAlert = new CustomAlert(app, text);
+        newAlert.toRemove(time);
     }
+
 };
 
 // screens
@@ -69,10 +74,6 @@ $app.blocks['win'] = renderWinScreen;
 
 
 // any customs
-$app.alert = function (text: string, time: number) {
-    const newAlert = new CustomAlert(app, text);
-    newAlert.toRemove(time);
-};
 
 !localStorage.getItem('inGame')
     ? $app.renderScreen('main-screen')
