@@ -2,7 +2,7 @@ import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateE
 
 export default class MainScreen {
     element: Element;
-    app: Element;
+    app: appType;
     static TEMPLATE: () => object;
     constructor(element: Element) {
         this.element = element;
@@ -17,6 +17,7 @@ export default class MainScreen {
         this.app = window.application;
         this.startClick = this.startClick.bind(this);
         this.clickOnLevel = this.clickOnLevel.bind(this);
+        throw new Error('test')
     }
 
     clickOnLevel(e: any) {

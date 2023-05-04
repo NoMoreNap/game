@@ -284,5 +284,3 @@ CardField.MIXER = (obj) => {
     }
     return obj;
 };
-
-module.exports = { CardField }

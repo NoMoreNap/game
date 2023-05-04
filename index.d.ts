@@ -28,7 +28,7 @@ type appType = {
     screens: screens ;
     renderScreen: (screen: string) => void;
     renderBlock: (parent: HTMLElement, blocks: string) => void;
-    timers: Array<()=>void>;
+    timers: Array<NodeJS.Timer>;
     stopTimer: () => void;
     alert: (text: string, time: number) => void;
 }
