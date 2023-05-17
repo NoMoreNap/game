@@ -67,7 +67,7 @@ export default class Timer {
             localStorage.removeItem('sec');
             localStorage.removeItem('min');
         });
-        window.application.renderBlock('lose', document.querySelector('.app'));
+        window.application.renderBlock(document.querySelector('.app')!, 'lose');
     }
 }
 

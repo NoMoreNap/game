@@ -2,7 +2,7 @@ import templateEngine from '../node_modules/tonyabayonetta/lib/scripts/templateE
 
 export default class MainScreen {
     element: Element;
-    app: Element;
+    app: appType;
     static TEMPLATE: () => object;
     constructor(element: Element) {
         this.element = element;
