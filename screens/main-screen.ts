@@ -17,7 +17,6 @@ export default class MainScreen {
         this.app = window.application;
         this.startClick = this.startClick.bind(this);
         this.clickOnLevel = this.clickOnLevel.bind(this);
-        throw new Error('test')
     }
 
     clickOnLevel(e: any) {
